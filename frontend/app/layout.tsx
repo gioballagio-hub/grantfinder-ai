@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
             <div className="flex gap-6 text-sm">
               <a href="/" className="text-dark-muted hover:text-gold transition">Cerca</a>
-              <a href="#" className="text-dark-muted hover:text-gold transition">Fonti Dati</a>
+              <a href="/bandi" className="text-dark-muted hover:text-gold transition">Catalogo Bandi</a>
               <a href="#" className="text-dark-muted hover:text-gold transition">Come Funziona</a>
             </div>
           </div>

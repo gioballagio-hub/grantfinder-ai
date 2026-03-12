@@ -34,6 +34,8 @@ export interface FundingResult {
   status: string;
   relevance_score: number;
   why_relevant: string | null;
+  grant_amount: number;
+  category: "eu" | "national" | "regional";
 }
 
 export interface SearchResponse {

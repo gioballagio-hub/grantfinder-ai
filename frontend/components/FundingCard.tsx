@@ -9,7 +9,7 @@ function formatAmount(n: number | null): string {
   return n.toLocaleString("it-IT");
 }
 
-export default function FundingCard({ funding }: { funding: FundingResult }) {
+export default function FundingCard({ funding, rank }: { funding: FundingResult; rank?: number }) {
   const typeColors: Record<string, string> = {
     grant: "bg-green-900/20 text-green-400 border-green-800/30",
     loan: "bg-blue-900/20 text-blue-400 border-blue-800/30",
@@ -27,6 +27,11 @@ export default function FundingCard({ funding }: { funding: FundingResult }) {
   return (
     <div className="bg-dark-card rounded-2xl border border-dark-border hover:border-gold/30 transition-all p-6 group">
       <div className="flex items-start justify-between gap-4 mb-3">
+        {rank && (
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-muted flex items-center justify-center text-sm font-bold text-gold">
+            {rank}
+          </div>
+        )}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             {funding.funding_type && (
@@ -58,6 +63,11 @@ export default function FundingCard({ funding }: { funding: FundingResult }) {
             : "Variabile"}
           {funding.funding_percentage && ` (${funding.funding_percentage}%)`}
         </span>
+        {funding.grant_amount > 0 && (
+          <span className="flex items-center gap-1 text-green-400 font-medium">
+            Fondo perduto: €{formatAmount(funding.grant_amount)}
+          </span>
+        )}
         {funding.deadline && (
           <span className="flex items-center gap-1">
             <Calendar size={14} className="text-gold" />
