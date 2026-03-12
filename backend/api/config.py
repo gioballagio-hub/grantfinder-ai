@@ -13,7 +13,7 @@ class Settings(BaseSettings):
 
     claude_model: str = "claude-haiku-4-5-20251001"
 
-    cors_origins: list[str] = ["http://localhost:3000"]
+    cors_origins: list[str] = ["http://localhost:3000", "http://localhost:3001", "https://*.vercel.app"]
 
     class Config:
         env_file = ".env"
