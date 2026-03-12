@@ -32,15 +32,15 @@ export default function SearchBar({
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Descrivi la tua azienda e il progetto per cui cerchi finanziamenti..."
             rows={5}
-            className="w-full px-5 py-4 pr-14 text-base border-2 border-gray-200 rounded-2xl shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none resize-none transition"
+            className="w-full px-5 py-4 pr-14 text-base bg-dark-card border border-dark-border rounded-2xl text-light placeholder-dark-muted focus:border-gold focus:ring-1 focus:ring-gold/30 outline-none resize-none transition"
           />
           <button
             type="submit"
             disabled={loading || !prompt.trim()}
-            className="absolute right-3 bottom-3 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 text-white rounded-xl p-3 transition shadow-md"
+            className="absolute right-3 bottom-3 bg-gold hover:bg-gold-light disabled:bg-dark-lighter disabled:text-dark-muted text-dark rounded-xl p-3 transition shadow-[0_0_15px_rgba(212,175,55,0.2)]"
           >
             {loading ? (
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-dark border-t-transparent rounded-full animate-spin" />
             ) : (
               <Search size={20} />
             )}
@@ -49,12 +49,12 @@ export default function SearchBar({
       </form>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <span className="text-xs text-gray-400">Esempi:</span>
+        <span className="text-xs text-dark-muted">Esempi:</span>
         {EXAMPLES.map((ex, i) => (
           <button
             key={i}
             onClick={() => { setPrompt(ex); onSearch(ex); }}
-            className="text-xs bg-white border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary-400 hover:text-primary-700 transition truncate max-w-[280px]"
+            className="text-xs bg-dark-lighter border border-dark-border text-dark-muted rounded-full px-3 py-1.5 hover:border-gold hover:text-gold transition truncate max-w-[280px]"
           >
             {ex.slice(0, 60)}...
           </button>

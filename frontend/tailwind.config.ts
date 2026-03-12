@@ -8,8 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: { 50: "#eff6ff", 100: "#dbeafe", 500: "#3b82f6", 600: "#2563eb", 700: "#1d4ed8", 900: "#1e3a5f" },
-        accent: { 500: "#10b981", 600: "#059669" },
+        gold: {
+          DEFAULT: "#D4AF37",
+          light: "#F9A602",
+          muted: "rgba(212, 175, 55, 0.1)",
+          20: "rgba(212, 175, 55, 0.2)",
+        },
+        dark: {
+          DEFAULT: "#000000",
+          card: "#0c0c0c",
+          lighter: "#141414",
+          border: "#1f1f1f",
+          muted: "#707070",
+        },
+        light: "#ededed",
       },
     },
   },

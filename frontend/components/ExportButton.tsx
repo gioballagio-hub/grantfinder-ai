@@ -29,14 +29,14 @@ export default function ExportButton({ prompt }: { prompt: string }) {
       <button
         onClick={() => handleExport("pdf")}
         disabled={loading}
-        className="flex items-center gap-1.5 text-sm bg-red-50 text-red-700 hover:bg-red-100 px-3 py-1.5 rounded-lg transition"
+        className="flex items-center gap-1.5 text-sm bg-dark-lighter border border-dark-border text-dark-muted hover:border-gold hover:text-gold px-3 py-1.5 rounded-lg transition"
       >
         <Download size={14} /> PDF
       </button>
       <button
         onClick={() => handleExport("excel")}
         disabled={loading}
-        className="flex items-center gap-1.5 text-sm bg-green-50 text-green-700 hover:bg-green-100 px-3 py-1.5 rounded-lg transition"
+        className="flex items-center gap-1.5 text-sm bg-dark-lighter border border-dark-border text-dark-muted hover:border-gold hover:text-gold px-3 py-1.5 rounded-lg transition"
       >
         <Download size={14} /> Excel
       </button>
