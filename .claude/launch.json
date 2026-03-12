@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "grantfinder",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "-p", "3001", "--dir", "/Users/giovanniballardin/Desktop/Progetti WEB/grantfinder-ai/frontend"],
+      "port": 3001
+    }
+  ]
+}
