@@ -3,9 +3,9 @@ import { supabase } from "@/lib/supabase";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: any
 ) {
-  const { id } = params;
+  const id = context.params.id;
 
   const { data, error } = await supabase
     .from("funding_calls")
@@ -14,6 +14,7 @@ export async function GET(
     .single();
 
   if (error || !data) {
+    console.error("Funding fetch error:", error, "id:", id);
     return NextResponse.json({ error: "Bando non trovato" }, { status: 404 });
   }
 
