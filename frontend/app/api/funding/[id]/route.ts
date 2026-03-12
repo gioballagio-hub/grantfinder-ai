@@ -3,9 +3,9 @@ import { supabase } from "@/lib/supabase";
 
 export async function GET(
   request: NextRequest,
-  context: any
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = context.params.id;
+  const { id } = await params;
 
   const { data, error } = await supabase
     .from("funding_calls")
