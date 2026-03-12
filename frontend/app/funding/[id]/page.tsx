@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { ArrowLeft, Calendar, DollarSign, ExternalLink, MapPin, Users } from "lucide-react";
-import { getFunding, type FundingResult } from "@/lib/api";
+import { type FundingResult } from "@/lib/api";
+import { supabaseBrowser } from "@/lib/supabase-browser";
 import ScoreBadge from "@/components/ScoreBadge";
 
 function formatAmount(n: number | null): string {
@@ -18,9 +19,18 @@ export default function FundingDetail() {
 
   useEffect(() => {
     if (id) {
-      getFunding(id as string)
-        .then(setFunding)
-        .catch(() => setError(true));
+      supabaseBrowser
+        .from("funding_calls")
+        .select("*")
+        .eq("id", id as string)
+        .single()
+        .then(({ data, error: err }) => {
+          if (err || !data) {
+            setError(true);
+          } else {
+            setFunding({ ...data, relevance_score: 0, why_relevant: null } as FundingResult);
+          }
+        });
     }
   }, [id]);
 
