@@ -9,7 +9,7 @@ function formatAmount(n: number | null): string {
   return n.toLocaleString("it-IT");
 }
 
-export default function FundingCard({ funding, rank }: { funding: FundingResult; rank?: number }) {
+export default function FundingCard({ funding, rank, onOpen }: { funding: FundingResult; rank?: number; onOpen?: (id: string) => void }) {
   const typeColors: Record<string, string> = {
     grant: "bg-green-900/20 text-green-400 border-green-800/30",
     loan: "bg-blue-900/20 text-blue-400 border-blue-800/30",
@@ -41,12 +41,12 @@ export default function FundingCard({ funding, rank }: { funding: FundingResult;
             )}
             <span className="text-[11px] text-dark-muted">{funding.program}</span>
           </div>
-          <a
-            href={`/funding/${funding.id}`}
-            className="text-lg font-semibold text-light group-hover:text-gold transition line-clamp-2"
+          <button
+            onClick={() => onOpen?.(funding.id)}
+            className="text-lg font-semibold text-light group-hover:text-gold transition line-clamp-2 text-left cursor-pointer"
           >
             {funding.title}
-          </a>
+          </button>
         </div>
         <ScoreBadge score={funding.relevance_score} />
       </div>

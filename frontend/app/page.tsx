@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Sparkles, Database, FileText, Shield, Globe, Flag, MapPin, ArrowUpDown, TrendingUp } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import FundingCard from "@/components/FundingCard";
+import FundingDrawer from "@/components/FundingDrawer";
 import ParamsDisplay from "@/components/ParamsDisplay";
 import ExportButton from "@/components/ExportButton";
 import type { SearchResponse, FundingResult } from "@/lib/api";
@@ -33,6 +34,10 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<CategoryTab>("all");
   const [sortMode, setSortMode] = useState<SortMode>("relevance");
+  const [drawerFundingId, setDrawerFundingId] = useState<string | null>(null);
+
+  const selectedFunding = result?.results.find(f => f.id === drawerFundingId) || null;
+  const closeDrawer = useCallback(() => setDrawerFundingId(null), []);
 
   const handleSearch = async (userPrompt: string) => {
     setPrompt(userPrompt);
@@ -196,7 +201,7 @@ export default function Home() {
           {/* Funding cards */}
           <div className="space-y-4">
             {sortedResults.map((funding, idx) => (
-              <FundingCard key={funding.id} funding={funding} rank={idx + 1} />
+              <FundingCard key={funding.id} funding={funding} rank={idx + 1} onOpen={setDrawerFundingId} />
             ))}
           </div>
 
@@ -208,6 +213,13 @@ export default function Home() {
           )}
         </section>
       )}
+
+      {/* Detail Drawer */}
+      <FundingDrawer
+        fundingId={drawerFundingId}
+        searchResult={selectedFunding}
+        onClose={closeDrawer}
+      />
 
       {/* Features - only on homepage */}
       {!result && (
